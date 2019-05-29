@@ -1,6 +1,6 @@
 ﻿namespace Parcial1_WalderReyes
 {
-    partial class Form1
+    partial class MainFrom
     {
         /// <summary>
         /// Required designer variable.
