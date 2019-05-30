@@ -31,26 +31,7 @@ namespace Parcial1_WalderReyes.BLL
             return productos;
         }
 
-        public static bool buscar(Productos productos)
-        {
-            Contexto contexto = new Contexto();
-
-            try
-            {
-                var buscar = contexto.Productos.Find(productos.ProductoId);
-            }
-            catch (Exception)
-            {
-                throw;
-
-            }
-            finally
-            {
-                contexto.Dispose();
-
-            }
-            return buscar;
-        }
+        
         public static bool Guardar(Productos productos)
         {
             bool paso = false;
@@ -72,5 +53,30 @@ namespace Parcial1_WalderReyes.BLL
 
             return paso;
         }
+
+        public static bool Eliminar(int id)
+        {
+            bool paso = false;
+            Contexto contexto = new Contexto();
+            try
+            {
+                var eliminar = contexto.Productos.Find(id);
+                contexto.Entry(eliminar).State = System.Data.Entity.EntityState.Deleted;
+                paso = (contexto.SaveChanges() > 0);
+
+
+            }
+            catch
+            {
+                throw;
+            }
+            finally
+            {
+                contexto.Dispose();
+            }
+            return paso;
+        }
     }
+
+    
 }
