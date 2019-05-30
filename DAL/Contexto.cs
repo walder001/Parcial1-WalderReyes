@@ -10,7 +10,7 @@ namespace Parcial1_WalderReyes.DAL
 {
    public class Contexto : DbContext
     {
-        public DbSet<Productos> productos { get; set; }
+        public DbSet<Productos> Productos { get; set; }
 
         public Contexto(): base("Parcial1-WalderReyes")
         {
