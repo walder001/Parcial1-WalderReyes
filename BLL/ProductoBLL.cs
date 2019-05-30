@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Parcial1_WalderReyes.Entidades;
 using Parcial1_WalderReyes.DAL;
+using System.Linq.Expressions;
 
 namespace Parcial1_WalderReyes.BLL
 {
@@ -64,7 +65,6 @@ namespace Parcial1_WalderReyes.BLL
                 contexto.Entry(eliminar).State = System.Data.Entity.EntityState.Deleted;
                 paso = (contexto.SaveChanges() > 0);
 
-
             }
             catch
             {
@@ -75,6 +75,26 @@ namespace Parcial1_WalderReyes.BLL
                 contexto.Dispose();
             }
             return paso;
+        }
+
+        public static List<Productos> GetList(Expression<Func<Productos,bool>>productos)
+        {
+            Contexto contexto = new Contexto();
+            List<Productos> lista = new List<Productos>();
+            try
+            {
+                lista = contexto.Productos.Where(productos).ToList();
+
+            }
+            catch
+            {
+                throw;
+            }
+            finally
+            {
+                contexto.Dispose();
+            }
+            return lista;
         }
     }
 
