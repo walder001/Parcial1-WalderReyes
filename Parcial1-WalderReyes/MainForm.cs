@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Parcial1_WalderReyes.UI.Registro;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -16,5 +17,13 @@ namespace Parcial1_WalderReyes
         {
             InitializeComponent();
         }
+
+        private void ProductoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            rProductos producto = new rProductos();
+
+            producto.Show();
+        }
     }
+
 }

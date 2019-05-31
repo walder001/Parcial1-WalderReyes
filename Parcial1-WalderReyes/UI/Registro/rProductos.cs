@@ -130,6 +130,32 @@ namespace Parcial1_WalderReyes.UI.Registro
             Productos pro = new Productos();
             ProductoBLL.Eliminar((int)ProductoIdnumericUpDown1.Value);
         }
+
+        public void Metodo()
+        {
+            if (CostotextBox2.Text.Length > 0 && ExistenciatextBox3.Text.Length > 0)
+                InventariotextBox4.Text = Convert.ToString(Convert.ToInt32(CostotextBox2.Text) * Convert.ToInt32(ExistenciatextBox3.Text));
+
+            if (CostotextBox2.Text.Length > 0 && ExistenciatextBox3.Text.Length == 0)
+                InventariotextBox4.Text = "0";
+
+            if (CostotextBox2.Text.Length == 0 && ExistenciatextBox3.Text.Length > 0)
+                InventariotextBox4.Text = "0";
+
+            if (CostotextBox2.Text.Length == 0 && ExistenciatextBox3.Text.Length == 0)
+                InventariotextBox4.Text = "0";
+        }
+
+        private void InventariotextBox4_TextChanged(object sender, EventArgs e)
+        {
+            Metodo();
+           
+        }
+
+        private void ExistenciatextBox3_TextChanged(object sender, EventArgs e)
+        {
+            Metodo();
+        }
     }
 }
 

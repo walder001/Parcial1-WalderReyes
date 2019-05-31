@@ -102,6 +102,7 @@
             this.InventariotextBox4.ReadOnly = true;
             this.InventariotextBox4.Size = new System.Drawing.Size(191, 20);
             this.InventariotextBox4.TabIndex = 26;
+            this.InventariotextBox4.TextChanged += new System.EventHandler(this.InventariotextBox4_TextChanged);
             // 
             // ExistenciatextBox3
             // 
@@ -109,6 +110,7 @@
             this.ExistenciatextBox3.Name = "ExistenciatextBox3";
             this.ExistenciatextBox3.Size = new System.Drawing.Size(191, 20);
             this.ExistenciatextBox3.TabIndex = 25;
+            this.ExistenciatextBox3.TextChanged += new System.EventHandler(this.ExistenciatextBox3_TextChanged);
             // 
             // CostotextBox2
             // 
