@@ -16,7 +16,7 @@ namespace Parcial1_WalderReyes
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new MainFrom());
+            Application.Run(new MainForm());
         }
     }
 }

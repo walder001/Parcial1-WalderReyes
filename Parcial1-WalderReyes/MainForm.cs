@@ -8,11 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Parcial1_WalderReyes.UI.Consulta
+namespace Parcial1_WalderReyes
 {
-    public partial class Inventario : Form
+    public partial class MainForm : Form
     {
-        public Inventario()
+        public MainForm()
         {
             InitializeComponent();
         }
