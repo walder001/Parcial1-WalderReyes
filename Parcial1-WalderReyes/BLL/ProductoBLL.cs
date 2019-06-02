@@ -54,7 +54,27 @@ namespace Parcial1_WalderReyes.BLL
 
             return paso;
         }
-
+        
+        public static bool Modificar(Productos productos)
+        {
+            bool paso = false;
+            Contexto contexto = new Contexto();
+            try
+            {
+                var buscar = contexto.Productos.Find(productos.ProductoId);
+                contexto.Entry(productos).State = System.Data.Entity.EntityState.Modified;
+                paso = (contexto.SaveChanges()>0);
+            }
+            catch
+            {
+                throw;
+            }
+            finally
+            {
+                contexto.Dispose();
+            }
+            return paso;
+        }
         public static bool Eliminar(int id)
         {
             bool paso = false;

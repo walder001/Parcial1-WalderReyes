@@ -1,4 +1,5 @@
-﻿using Parcial1_WalderReyes.UI.Registro;
+﻿using Parcial1_WalderReyes.UI.Consulta;
+using Parcial1_WalderReyes.UI.Registro;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -24,6 +25,14 @@ namespace Parcial1_WalderReyes
 
             producto.Show();
         }
+
+        private void ConsultaToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            Inventario i = new Inventario();
+            i.Show();
+        }
+
+       
     }
 
 }

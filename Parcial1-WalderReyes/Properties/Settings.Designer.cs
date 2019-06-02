@@ -31,5 +31,14 @@ namespace Parcial1_WalderReyes.Properties {
                 return ((string)(this["Setting"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        public string Setting1 {
+            get {
+                return ((string)(this["Setting1"]));
+            }
+        }
     }
 }

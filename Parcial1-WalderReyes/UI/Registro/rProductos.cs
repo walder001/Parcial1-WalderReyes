@@ -14,149 +14,299 @@ namespace Parcial1_WalderReyes.UI.Registro
 {
     public partial class rProductos : Form
     {
+        /// <summary>
+        /// Constructor de la clase
+        /// </summary>
         public rProductos()
         {
             InitializeComponent();
         }
+
+        /// <summary>
+        /// Metodo utilizado para limpiar el formulario
+        /// </summary>
         public void limpiar()
         {
             ProductoIdnumericUpDown1.Value = 0;
             DescripciontextBox1.Text = string.Empty;
-            CostotextBox2.Text = string.Empty;
-            ExistenciatextBox3.Text = string.Empty;
+            CostonumericUpDown2.Value = 0;
+            ExisencianumericUpDown3.Value = 0;
             InventariotextBox4.Text = string.Empty;
 
         }
 
+        /// <summary>
+        /// Metodo utilizado para llenar la clase, se lecciona los valores en los campos para pasarlos a la clase Producto. 
+        /// </summary>
+        /// <returns></returns>
         public Productos LlenarClase()
         {
             Productos pro = new Productos();
             pro.ProductoId = Convert.ToInt32(ProductoIdnumericUpDown1.Value);
             pro.Descripcion = DescripciontextBox1.Text;
-            pro.Costo = Convert.ToSingle(CostotextBox2.Text);
-            pro.Existencia = Convert.ToInt32(ExistenciatextBox3.Text);
+            pro.Costo = Convert.ToSingle(CostonumericUpDown2.Value);
+            pro.Existencia = Convert.ToInt32(ExisencianumericUpDown3.Value);
             pro.ValorInventario = Convert.ToSingle(InventariotextBox4.Text);
             return pro;
 
         }
 
+        /// <summary>
+        /// Metodo para seleccional los valores que se encuentra en la clase
+        /// </summary>
+        /// <param name="pro">Es la variable de instaciacion</param>
         private void LLenarCampo(Productos pro)
         {
             ProductoIdnumericUpDown1.Value = pro.ProductoId;
             DescripciontextBox1.Text = pro.Descripcion;
-           CostotextBox2.Text = Convert.ToString(pro.Costo);
-            ExistenciatextBox3.Text = Convert.ToString(pro.Existencia);
+            CostonumericUpDown2.Value = Convert.ToDecimal(pro.Costo);
+            ExisencianumericUpDown3.Value = Convert.ToDecimal(pro.Existencia);
             InventariotextBox4.Text = Convert.ToString(pro.ValorInventario);
 
         }
+        /// <summary>
+        /// Metodos para que el campo Dewscripcion solo reciba letras
+        /// </summary>
+        /// <param name="e"></param>
+        public void SoloLetras(KeyPressEventArgs e)
+        {
+            try
+            {
+                if (Char.IsLetter(e.KeyChar))
+                {
 
+                    e.Handled = false;
 
+                }
+                else if (Char.IsControl(e.KeyChar))
+                {
+                    e.Handled = false;
+
+                }
+                else if (char.IsSeparator(e.KeyChar))
+                {
+                    e.Handled = false;
+
+                }
+                else
+                {
+                    e.Handled = true;
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+
+        }
+        
+        /// <summary>
+        /// Metodo que valida que no se ingrese valores nulos o campos vacios en otras palabras.
+        /// </summary>
+        /// <returns></returns>
         private bool Validar()
         {
             bool paso = true;
             ErrorProvider.Clear();
+
             if (ProductoIdnumericUpDown1.Value == 0)
             {
-                ErrorProvider.SetError(ProductoIdnumericUpDown1,"El campo es invalido");
+                ErrorProvider.SetError(ProductoIdnumericUpDown1, "El campo no puede estar vacio");
                 ProductoIdnumericUpDown1.Focus();
                 paso = false;
             }
             if (DescripciontextBox1.Text == string.Empty)
             {
-                ErrorProvider.SetError(DescripciontextBox1, "El campo esta vacio");
+                ErrorProvider.SetError(DescripciontextBox1, "El campo no puede estar vacio");
                 DescripciontextBox1.Focus();
                 paso = false;
 
+            }
+            if (CostonumericUpDown2.Value == 0)
+            {
+                ErrorProvider.SetError(CostonumericUpDown2, "El costo no puede ser 0");
+                CostonumericUpDown2.Focus();
+                paso = false;
+
 
             }
-            if (string.IsNullOrWhiteSpace(CostotextBox2.Text))
+            if (ExisencianumericUpDown3.Value == 0)
             {
-                ErrorProvider.SetError(CostotextBox2, "El Campo invalido");
-                CostotextBox2.Focus();
+                ErrorProvider.SetError(ExisencianumericUpDown3,"La existencia no puede se 0");
+                ExisencianumericUpDown3.Focus();
                 paso = false;
             }
-
-            if (string.IsNullOrWhiteSpace(ExistenciatextBox3.Text))
-            {
-                ErrorProvider.SetError(ExistenciatextBox3, "El campo es invalido");
-
-            }
             return paso;
-       
+
         }
-        private bool BaseDato(int id)
+
+
+
+        private bool Existe()
         {
             Productos pro = ProductoBLL.Buscar((int)ProductoIdnumericUpDown1.Value);
             return (pro != null);
         }
 
+        /// <summary>
+        /// Metodo para realizar el calculo de la UI
+        /// </summary>
+        public void Metodo()
+        {
+            float cos, exi;
+            cos = Convert.ToSingle(CostonumericUpDown2.Value);
+            exi = Convert.ToInt32(ExisencianumericUpDown3.Value);
 
-        
+            float recibir = (cos * exi);
+
+            InventariotextBox4.Text = recibir.ToString();
+
+            if (CostonumericUpDown2.Value > 0 && ExisencianumericUpDown3.Value == 0)
+                InventariotextBox4.Text = "0";
+
+            if (CostonumericUpDown2.Value == 0 && ExisencianumericUpDown3.Value > 0)
+                InventariotextBox4.Text = "0";
+
+            if (CostonumericUpDown2.Value == 0 && ExisencianumericUpDown3.Value == 0)
+                InventariotextBox4.Text = "0";
+        }
+
         private void Limpiar_Click(object sender, EventArgs e)
         {
             limpiar();
         }
 
-        
-
-        private void Guardar_Click(object sender, EventArgs e)
+        /// <summary>
+        /// Validacion del campo Descripcion para que no permita numeros
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void DescripciontextBox1_KeyPress(object sender, KeyPressEventArgs e)
         {
-            Productos pro;
-            bool paso = false;
+            SoloLetras(e);
+        }
+     
+        /// <summary>
+        /// Llamado al metodo para realizar el calculo
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ExisencianumericUpDown3_ValueChanged(object sender, EventArgs e)
+        {
+            Metodo();
+        }
 
-            if (!Validar())
-                return;
+        /// <summary>
+        /// Llamado al metodo para el calculo
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+       
+        private void CostonumericUpDown2_ValueChanged_1(object sender, EventArgs e)
+        {
+            Metodo();
 
-            pro = LlenarClase();
+        }
+
+        private void ExisencianumericUpDown3_ValueChanged_1(object sender, EventArgs e)
+        {
+            Metodo();
+        }
+
+        /// <summary>
+        /// Metodos para buscar en la base de datos
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Buscar_Click_1(object sender, EventArgs e)
+        {
+            Productos producto = new Productos();
+            int id;
+            id = Convert.ToInt32(ProductoIdnumericUpDown1.Value);
             limpiar();
-
-            //Determinar si es guardar o modificar
-            if (ProductoIdnumericUpDown1.Value == 0)
-                paso = ProductoBLL.Guardar(pro);
+            producto = ProductoBLL.Buscar(id);
+            if (producto != null)
+            {
+                MessageBox.Show("Persona encontrada");
+                LLenarCampo(producto);
+            }
             else
             {
-                
+                MessageBox.Show("Persona no enctrada");
+            }
+        }
+
+
+        /// <summary>
+        /// Metodo para guardar en la base de datos
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Guardar_Click_1(object sender, EventArgs e)
+        {
+
+            Productos producto;
+            bool paso = false;
+            if (!Validar())
+                return;
+            producto = LlenarClase();
+            limpiar();
+
+            if (ProductoIdnumericUpDown1.Value == 0)
+            {
+                paso = ProductoBLL.Guardar(producto);
+
+            }
+            else
+            {
+                if (!Existe())
+                {
+                    MessageBox.Show("No se puede modificar una persona que no existe", "Fallo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
+                paso = ProductoBLL.Modificar(producto);
+
+            }
+            if (paso)
+            {
+                MessageBox.Show("Guardado", "Exito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                MessageBox.Show("No fue posible guardar", "Fallo", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
-            //Informar el resultado
-            if (paso)
-                MessageBox.Show("Guardado!!", "Exito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        /// <summary>
+        /// Metodo para eliminar un producto
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        /// 
+       
+        private void Eliminar_Click_1(object sender, EventArgs e)
+        {
+            ErrorProvider.Clear();
+            int id;
+            int.TryParse(ProductoIdnumericUpDown1.Text, out id);
+            limpiar();
+            if (ProductoBLL.Eliminar(id))
+            {
+                MessageBox.Show("Eliminado");
+            }
             else
-                MessageBox.Show("No fue posible guardar!!", "Fallo", MessageBoxButtons.OK, MessageBoxIcon.Error);
-        }
+            {
+                ErrorProvider.SetError(ProductoIdnumericUpDown1,"No se puedes eliminar una persona que no existe");
+            }
+            
 
-        private void Eliminar_Click(object sender, EventArgs e)
-        {
-            Productos pro = new Productos();
-            ProductoBLL.Eliminar((int)ProductoIdnumericUpDown1.Value);
-        }
-
-        public void Metodo()
-        {
-            if (CostotextBox2.Text.Length > 0 && ExistenciatextBox3.Text.Length > 0)
-                InventariotextBox4.Text = Convert.ToString(Convert.ToInt32(CostotextBox2.Text) * Convert.ToInt32(ExistenciatextBox3.Text));
-
-            if (CostotextBox2.Text.Length > 0 && ExistenciatextBox3.Text.Length == 0)
-                InventariotextBox4.Text = "0";
-
-            if (CostotextBox2.Text.Length == 0 && ExistenciatextBox3.Text.Length > 0)
-                InventariotextBox4.Text = "0";
-
-            if (CostotextBox2.Text.Length == 0 && ExistenciatextBox3.Text.Length == 0)
-                InventariotextBox4.Text = "0";
-        }
-
-        private void InventariotextBox4_TextChanged(object sender, EventArgs e)
-        {
-            Metodo();
-           
-        }
-
-        private void ExistenciatextBox3_TextChanged(object sender, EventArgs e)
-        {
-            Metodo();
         }
     }
+
+       
+    
 }
 
     

@@ -6,5 +6,9 @@
       <DesignTimeValue Profile="(Default)" />
       <Value Profile="(Default)" />
     </Setting>
+    <Setting Name="Setting1" Type="(Connection string)" Scope="Application">
+      <DesignTimeValue Profile="(Default)" />
+      <Value Profile="(Default)" />
+    </Setting>
   </Settings>
 </SettingsFile>
