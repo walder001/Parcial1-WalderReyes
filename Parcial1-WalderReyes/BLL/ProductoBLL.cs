@@ -68,6 +68,7 @@ namespace Parcial1_WalderReyes.BLL
                 var buscar = contexto.Productos.Find(productos.ProductoId);
                 contexto.Entry(productos).State = System.Data.Entity.EntityState.Modified;
                 paso = (contexto.SaveChanges()>0);
+
             }
             catch
             {
@@ -85,7 +86,12 @@ namespace Parcial1_WalderReyes.BLL
             Contexto contexto = new Contexto();
             try
             {
-                var eliminar = contexto.Productos.Find(id);
+             var eliminar = contexto.Productos.Find(id);
+
+                var Inventario = InventarioBLL.Buscar(1);
+                Inventario.Total -= eliminar.ValorInventario;
+                InventarioBLL.Modificar(Inventario);
+
                 contexto.Entry(eliminar).State = System.Data.Entity.EntityState.Deleted;
                 paso = (contexto.SaveChanges() > 0);
 

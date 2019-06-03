@@ -44,7 +44,7 @@ namespace Parcial1_WalderReyes.UI.Registro
         {
             Productos pro = new Productos();
             pro.ProductoId = Convert.ToInt32(ProductoIdnumericUpDown1.Value);
-            pro.Descripcion = DescripciontextBox1.Text;
+            pro.Descripcion = DescripciontextBox1.Text.Trim();
             pro.Costo = Convert.ToSingle(CostonumericUpDown2.Value);
             pro.Existencia = Convert.ToInt32(ExisencianumericUpDown3.Value);
             pro.ValorInventario = Convert.ToSingle(InventariotextBox4.Text);
@@ -109,12 +109,7 @@ namespace Parcial1_WalderReyes.UI.Registro
             bool paso = true;
             ErrorProvider.Clear();
 
-            if (ProductoIdnumericUpDown1.Value == 0)
-            {
-                ErrorProvider.SetError(ProductoIdnumericUpDown1, "El campo no puede estar vacio");
-                ProductoIdnumericUpDown1.Focus();
-                paso = false;
-            }
+           
             if (string.IsNullOrWhiteSpace(DescripciontextBox1.Text))
             {
                 ErrorProvider.SetError(DescripciontextBox1, "El campo no puede estar vacio");
@@ -128,7 +123,6 @@ namespace Parcial1_WalderReyes.UI.Registro
                 CostonumericUpDown2.Focus();
                 paso = false;
 
-
             }
             if (ExisencianumericUpDown3.Value == 0)
             {
@@ -139,8 +133,6 @@ namespace Parcial1_WalderReyes.UI.Registro
             return paso;
 
         }
-
-
 
         private bool Existe()
         {
@@ -176,11 +168,7 @@ namespace Parcial1_WalderReyes.UI.Registro
             limpiar();
         }
 
-        /// <summary>
-        /// Validacion del campo Descripcion para que no permita numeros
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+        
        
      
         /// <summary>
@@ -293,7 +281,7 @@ namespace Parcial1_WalderReyes.UI.Registro
         {
             ErrorProvider.Clear();
             int id;
-            int.TryParse(ProductoIdnumericUpDown1.Text, out id);
+            id = (int)ProductoIdnumericUpDown1.Value;
             limpiar();
             try
             {
@@ -314,14 +302,25 @@ namespace Parcial1_WalderReyes.UI.Registro
 
         }
 
+
         private void InventariotextBox4_TextChanged(object sender, EventArgs e)
         {
             Metodo();
         }
 
+        /// <summary>
+        /// Validacion del campo Descripcion para que no permita numeros
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void DescripciontextBox1_KeyPress_1(object sender, KeyPressEventArgs e)
         {
             SoloLetras(e);
+        }
+
+        private void Nuevo_Click(object sender, EventArgs e)
+        {
+            limpiar();
         }
     }
 

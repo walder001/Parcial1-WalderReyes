@@ -225,6 +225,7 @@
             this.Nuevo.TabIndex = 49;
             this.Nuevo.Text = "Nuevo";
             this.Nuevo.UseVisualStyleBackColor = false;
+            this.Nuevo.Click += new System.EventHandler(this.Nuevo_Click);
             // 
             // rProductos
             // 
