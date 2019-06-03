@@ -2,6 +2,7 @@
 using Parcial1_WalderReyes.Entidades;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -33,65 +34,56 @@ namespace Parcial1_WalderReyes.BLL
         public static bool Guardar(Inventario inventario)
         {
             bool paso = false;
+
             Contexto contexto = new Contexto();
             try
             {
                 if (contexto.Inventario.Add(inventario) != null)
+                {
                     paso = contexto.SaveChanges() > 0;
 
+                }
+                contexto.Dispose();
             }
             catch (Exception)
             {
                 throw;
             }
-            finally
-            {
-                contexto.Dispose();
-            }
-
             return paso;
         }
 
         public static bool Modificar(Inventario inventario)
         {
             bool paso = false;
+
             Contexto contexto = new Contexto();
             try
             {
-                var buscar = contexto.Inventario.Find(inventario.IdInventario);
-                contexto.Entry(inventario).State = System.Data.Entity.EntityState.Modified;
+                contexto.Entry(inventario).State = EntityState.Modified;
                 paso = (contexto.SaveChanges() > 0);
+
+                contexto.Dispose();
             }
-            catch
+            catch (Exception)
             {
                 throw;
-            }
-            finally
-            {
-                contexto.Dispose();
             }
             return paso;
         }
-        public static bool Eliminar(int id)
+        public static Inventario Eliminar(int id)
         {
-            bool paso = false;
             Contexto contexto = new Contexto();
+            Inventario inventario = new Inventario();
             try
             {
-                var eliminar = contexto.Inventario.Find(id);
-                contexto.Entry(eliminar).State = System.Data.Entity.EntityState.Deleted;
-                paso = (contexto.SaveChanges() > 0);
-
+                inventario = contexto.Inventario.Find(id);
+                contexto.Dispose();
             }
-            catch
+            catch (Exception)
             {
                 throw;
             }
-            finally
-            {
-                contexto.Dispose();
-            }
-            return paso;
+            return inventario;
         }
     }
 }

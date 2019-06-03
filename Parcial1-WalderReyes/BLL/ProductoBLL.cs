@@ -42,7 +42,9 @@ namespace Parcial1_WalderReyes.BLL
                 if (contexto.Productos.Add(productos) != null)
                     paso = contexto.SaveChanges() > 0;
                 Inventario inventario = InventarioBLL.Buscar(1);
+
                 inventario.Total += productos.ValorInventario;
+
                 InventarioBLL.Modificar(inventario);
             }
             catch(Exception)

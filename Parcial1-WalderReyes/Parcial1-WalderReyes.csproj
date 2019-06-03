@@ -120,6 +120,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="DAL\Query_Parcial1-WalderReyes.sql" />
     <Content Include="Release\baseline_delete_white_18dp.png" />
     <Content Include="Release\baseline_save_white_18dp.png" />
     <Content Include="Release\Fondo.png" />
