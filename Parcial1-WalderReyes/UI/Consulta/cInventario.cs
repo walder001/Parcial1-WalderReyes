@@ -15,21 +15,7 @@ namespace Parcial1_WalderReyes.UI.Consulta
 {
     public partial class cInventario : Form
     {
-        SqlConnection cn = new SqlConnection(@"Data Source =.\SQLEXPRESS; user = sa; password =  Initial Catalog = Parcial1-WalderReyesDb; Integrated Security = True");
-        string query = @"Select Sum(ValorInventario) from [DbParcial1-WalderReyes].[dbo].[Productos];";
-       
-
-        public void Mostrar()
-        {
-            cn.Close();
-            cn.Open();
-            string query = @"Select Sum(ValorInventario) from [DbParcial1-WalderReyes].[dbo].[Productos];";
-            SqlCommand cm = new SqlCommand(query, cn);
-            float mostrar = Convert.ToSingle(cm.ExecuteScalar());
-            InventariotextBox1.Text = mostrar.ToString();
-
-        }
-
+        
 
         public cInventario()
         {
@@ -40,7 +26,13 @@ namespace Parcial1_WalderReyes.UI.Consulta
         }
 
 
-        
+        public void Mostrar()
+        {
+            Inventario inventario = InventarioBLL.Buscar(1);
+            double total;
+            total = inventario.Total;
+            InventariotextBox1.Text = total.ToString();
+        }
 
        
         private void Button1_Click(object sender, EventArgs e)
@@ -50,12 +42,5 @@ namespace Parcial1_WalderReyes.UI.Consulta
 
         }
 
-        private void Button2_Click(object sender, EventArgs e)
-        {
-            Inventario inventario = InventarioBLL.Buscar(1);
-            double total;
-            total = inventario.Total;
-            InventariotextBox1.Text = total.ToString();
-        }
     }
 }

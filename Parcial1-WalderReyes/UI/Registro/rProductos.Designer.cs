@@ -155,6 +155,7 @@
             this.DescripciontextBox1.Name = "DescripciontextBox1";
             this.DescripciontextBox1.Size = new System.Drawing.Size(191, 20);
             this.DescripciontextBox1.TabIndex = 41;
+            this.DescripciontextBox1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.DescripciontextBox1_KeyPress_1);
             // 
             // label6
             // 

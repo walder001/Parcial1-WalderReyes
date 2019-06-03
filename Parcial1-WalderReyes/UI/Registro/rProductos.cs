@@ -79,13 +79,12 @@ namespace Parcial1_WalderReyes.UI.Registro
                     e.Handled = false;
 
                 }
-                else if (Char.IsControl(e.KeyChar))
+               else if (Char.IsControl(e.KeyChar))
                 {
                     e.Handled = false;
 
-                }
-                else if (char.IsSeparator(e.KeyChar))
-                {
+                }else if(Char.IsSeparator(e.KeyChar)){
+
                     e.Handled = false;
 
                 }
@@ -116,7 +115,7 @@ namespace Parcial1_WalderReyes.UI.Registro
                 ProductoIdnumericUpDown1.Focus();
                 paso = false;
             }
-            if (DescripciontextBox1.Text == string.Empty)
+            if (string.IsNullOrWhiteSpace(DescripciontextBox1.Text))
             {
                 ErrorProvider.SetError(DescripciontextBox1, "El campo no puede estar vacio");
                 DescripciontextBox1.Focus();
@@ -182,10 +181,7 @@ namespace Parcial1_WalderReyes.UI.Registro
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void DescripciontextBox1_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            SoloLetras(e);
-        }
+       
      
         /// <summary>
         /// Llamado al metodo para realizar el calculo
@@ -265,8 +261,14 @@ namespace Parcial1_WalderReyes.UI.Registro
                     MessageBox.Show("No se puede modificar una persona que no existe", "Fallo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     return;
                 }
-                paso = ProductoBLL.Modificar(producto);
+               
+                    MessageBox.Show("Desea modificar", "Question", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+                    
+                    paso = ProductoBLL.Modificar(producto);
 
+                
+            
+                
             }
             if (paso)
             {
@@ -293,13 +295,20 @@ namespace Parcial1_WalderReyes.UI.Registro
             int id;
             int.TryParse(ProductoIdnumericUpDown1.Text, out id);
             limpiar();
-            if (ProductoBLL.Eliminar(id))
+            try
             {
-                MessageBox.Show("Eliminado");
+                if (ProductoBLL.Eliminar(id))
+                {
+                    MessageBox.Show("Eliminado");
+                }
+                else
+                {
+                    ErrorProvider.SetError(ProductoIdnumericUpDown1, "No se puedes eliminar una persona que no existe");
+                }
             }
-            else
+            catch
             {
-                ErrorProvider.SetError(ProductoIdnumericUpDown1,"No se puedes eliminar una persona que no existe");
+                MessageBox.Show("No puede eliminar un producto que no existe");
             }
             
 
@@ -308,6 +317,11 @@ namespace Parcial1_WalderReyes.UI.Registro
         private void InventariotextBox4_TextChanged(object sender, EventArgs e)
         {
             Metodo();
+        }
+
+        private void DescripciontextBox1_KeyPress_1(object sender, KeyPressEventArgs e)
+        {
+            SoloLetras(e);
         }
     }
 
