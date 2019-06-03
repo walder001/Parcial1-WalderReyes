@@ -28,7 +28,7 @@ namespace Parcial1_WalderReyes
 
         private void ConsultaToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            Inventario i = new Inventario();
+            cInventario i = new cInventario();
             i.Show();
         }
 
