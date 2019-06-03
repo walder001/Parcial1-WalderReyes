@@ -246,7 +246,7 @@ namespace Parcial1_WalderReyes.UI.Registro
             {
                 if (!Existe())
                 {
-                    MessageBox.Show("No se puede modificar una persona que no existe", "Fallo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("No se puede modificar un producto que no existe", "Fallo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     return;
                 }
                
