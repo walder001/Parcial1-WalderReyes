@@ -32,7 +32,7 @@ namespace Parcial1_WalderReyes
             i.Show();
         }
 
-       
+        
     }
 
 }

@@ -129,12 +129,15 @@
             // 
             // Buscar
             // 
-            this.Buscar.Location = new System.Drawing.Point(211, 66);
+            this.Buscar.BackColor = System.Drawing.Color.Red;
+            this.Buscar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Buscar.ForeColor = System.Drawing.Color.Black;
+            this.Buscar.Location = new System.Drawing.Point(211, 61);
             this.Buscar.Name = "Buscar";
-            this.Buscar.Size = new System.Drawing.Size(75, 23);
+            this.Buscar.Size = new System.Drawing.Size(75, 30);
             this.Buscar.TabIndex = 43;
             this.Buscar.Text = "Buscar";
-            this.Buscar.UseVisualStyleBackColor = true;
+            this.Buscar.UseVisualStyleBackColor = false;
             this.Buscar.Click += new System.EventHandler(this.Buscar_Click_1);
             // 
             // InventariotextBox4
@@ -144,6 +147,7 @@
             this.InventariotextBox4.ReadOnly = true;
             this.InventariotextBox4.Size = new System.Drawing.Size(191, 20);
             this.InventariotextBox4.TabIndex = 42;
+            this.InventariotextBox4.TextChanged += new System.EventHandler(this.InventariotextBox4_TextChanged);
             // 
             // DescripciontextBox1
             // 

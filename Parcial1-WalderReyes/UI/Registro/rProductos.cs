@@ -20,6 +20,7 @@ namespace Parcial1_WalderReyes.UI.Registro
         public rProductos()
         {
             InitializeComponent();
+            Metodo();
         }
 
         /// <summary>
@@ -302,6 +303,11 @@ namespace Parcial1_WalderReyes.UI.Registro
             }
             
 
+        }
+
+        private void InventariotextBox4_TextChanged(object sender, EventArgs e)
+        {
+            Metodo();
         }
     }
 
