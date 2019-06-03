@@ -1,5 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Parcial1_WalderReyes.BLL;
+using Parcial1_WalderReyes.Entidades;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,7 +21,11 @@ namespace Parcial1_WalderReyes.BLL.Tests
         [TestMethod()]
         public void GuardarTest()
         {
-            Assert.Fail();
+            bool paso = false;
+            Inventario inventario = new Inventario();
+            inventario.IdInventario = 1;
+            inventario.Total = 0;
+            paso = InventarioBLL.Guardar(inventario);
         }
 
         [TestMethod()]
