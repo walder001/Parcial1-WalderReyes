@@ -46,6 +46,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.Nuevo = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.ErrorProvider)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ExisencianumericUpDown3)).BeginInit();
@@ -64,7 +65,7 @@
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
             this.pictureBox1.Location = new System.Drawing.Point(0, 0);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(409, 394);
+            this.pictureBox1.Size = new System.Drawing.Size(433, 394);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
@@ -105,9 +106,9 @@
             this.Eliminar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Eliminar.Image = ((System.Drawing.Image)(resources.GetObject("Eliminar.Image")));
             this.Eliminar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.Eliminar.Location = new System.Drawing.Point(223, 335);
+            this.Eliminar.Location = new System.Drawing.Point(297, 341);
             this.Eliminar.Name = "Eliminar";
-            this.Eliminar.Size = new System.Drawing.Size(125, 41);
+            this.Eliminar.Size = new System.Drawing.Size(112, 41);
             this.Eliminar.TabIndex = 45;
             this.Eliminar.Text = "Eliminar";
             this.Eliminar.UseVisualStyleBackColor = false;
@@ -119,7 +120,7 @@
             this.Guardar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Guardar.Image = ((System.Drawing.Image)(resources.GetObject("Guardar.Image")));
             this.Guardar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.Guardar.Location = new System.Drawing.Point(55, 335);
+            this.Guardar.Location = new System.Drawing.Point(154, 341);
             this.Guardar.Name = "Guardar";
             this.Guardar.Size = new System.Drawing.Size(123, 41);
             this.Guardar.TabIndex = 44;
@@ -211,11 +212,26 @@
             this.label1.TabIndex = 35;
             this.label1.Text = "Registro Productos";
             // 
+            // Nuevo
+            // 
+            this.Nuevo.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.Nuevo.BackColor = System.Drawing.Color.Red;
+            this.Nuevo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Nuevo.Image = ((System.Drawing.Image)(resources.GetObject("Nuevo.Image")));
+            this.Nuevo.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.Nuevo.Location = new System.Drawing.Point(24, 341);
+            this.Nuevo.Name = "Nuevo";
+            this.Nuevo.Size = new System.Drawing.Size(113, 41);
+            this.Nuevo.TabIndex = 49;
+            this.Nuevo.Text = "Nuevo";
+            this.Nuevo.UseVisualStyleBackColor = false;
+            // 
             // rProductos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(409, 394);
+            this.ClientSize = new System.Drawing.Size(433, 394);
+            this.Controls.Add(this.Nuevo);
             this.Controls.Add(this.ExisencianumericUpDown3);
             this.Controls.Add(this.CostonumericUpDown2);
             this.Controls.Add(this.ProductoIdnumericUpDown1);
@@ -260,5 +276,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Button Nuevo;
     }
 }
