@@ -1,4 +1,5 @@
 ﻿using Parcial1_WalderReyes.BLL;
+using Parcial1_WalderReyes.DAL;
 using Parcial1_WalderReyes.Entidades;
 using System;
 using System.Collections.Generic;
@@ -21,6 +22,7 @@ namespace Parcial1_WalderReyes.UI.Registro
         {
             InitializeComponent();
             Metodo();
+            Listar();
         }
 
         /// <summary>
@@ -40,6 +42,7 @@ namespace Parcial1_WalderReyes.UI.Registro
         /// Metodo utilizado para llenar la clase, se lecciona los valores en los campos para pasarlos a la clase Producto. 
         /// </summary>
         /// <returns></returns>
+        
         public Productos LlenarClase()
         {
             Productos pro = new Productos();
@@ -109,7 +112,7 @@ namespace Parcial1_WalderReyes.UI.Registro
             bool paso = true;
             ErrorProvider.Clear();
 
-           
+            
             if (string.IsNullOrWhiteSpace(DescripciontextBox1.Text))
             {
                 ErrorProvider.SetError(DescripciontextBox1, "El campo no puede estar vacio");
@@ -249,14 +252,10 @@ namespace Parcial1_WalderReyes.UI.Registro
                     MessageBox.Show("No se puede modificar un producto que no existe", "Fallo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     return;
                 }
-               
                     MessageBox.Show("Desea modificar", "Question", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
-                    
+
                     paso = ProductoBLL.Modificar(producto);
 
-                
-            
-                
             }
             if (paso)
             {
@@ -300,6 +299,8 @@ namespace Parcial1_WalderReyes.UI.Registro
             }
             
 
+
+
         }
 
 
@@ -321,6 +322,42 @@ namespace Parcial1_WalderReyes.UI.Registro
         private void Nuevo_Click(object sender, EventArgs e)
         {
             limpiar();
+        }
+
+        private void Button1_Click(object sender, EventArgs e)
+        {
+            rUbicacion ubicacion = new rUbicacion();
+            ubicacion.Show();
+        }
+        Contexto contexto = new Contexto();
+
+        public List<Ubicacion> DataSource { get; private set; }
+
+        private void ComboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+            Listar();
+        }
+        public void Listar()
+        {
+            var lista = contexto.Ubicacion.ToList();
+            if (lista.Count > 0)
+            {
+                comboBox1.DataSource = lista;
+                comboBox1.DisplayMember = "No categoria";
+                comboBox1.ValueMember = "Id";
+                comboBox1.ValueMember = "Descripcion";
+
+                if (comboBox1.Items.Count > 1)
+                    comboBox1.SelectedIndex = -1;
+                
+
+            }
+        }
+
+        private void PictureBox1_Click(object sender, EventArgs e)
+        {
+            Listar();
         }
     }
 

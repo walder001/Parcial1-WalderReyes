@@ -47,6 +47,9 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.Nuevo = new System.Windows.Forms.Button();
+            this.label7 = new System.Windows.Forms.Label();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.ErrorProvider)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ExisencianumericUpDown3)).BeginInit();
@@ -65,10 +68,11 @@
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
             this.pictureBox1.Location = new System.Drawing.Point(0, 0);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(433, 394);
+            this.pictureBox1.Size = new System.Drawing.Size(446, 468);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
+            this.pictureBox1.Click += new System.EventHandler(this.PictureBox1_Click);
             // 
             // ExisencianumericUpDown3
             // 
@@ -106,7 +110,7 @@
             this.Eliminar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Eliminar.Image = ((System.Drawing.Image)(resources.GetObject("Eliminar.Image")));
             this.Eliminar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.Eliminar.Location = new System.Drawing.Point(297, 341);
+            this.Eliminar.Location = new System.Drawing.Point(296, 395);
             this.Eliminar.Name = "Eliminar";
             this.Eliminar.Size = new System.Drawing.Size(112, 41);
             this.Eliminar.TabIndex = 45;
@@ -120,7 +124,7 @@
             this.Guardar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Guardar.Image = ((System.Drawing.Image)(resources.GetObject("Guardar.Image")));
             this.Guardar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.Guardar.Location = new System.Drawing.Point(154, 341);
+            this.Guardar.Location = new System.Drawing.Point(153, 395);
             this.Guardar.Name = "Guardar";
             this.Guardar.Size = new System.Drawing.Size(123, 41);
             this.Guardar.TabIndex = 44;
@@ -219,7 +223,7 @@
             this.Nuevo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Nuevo.Image = ((System.Drawing.Image)(resources.GetObject("Nuevo.Image")));
             this.Nuevo.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.Nuevo.Location = new System.Drawing.Point(24, 341);
+            this.Nuevo.Location = new System.Drawing.Point(23, 395);
             this.Nuevo.Name = "Nuevo";
             this.Nuevo.Size = new System.Drawing.Size(113, 41);
             this.Nuevo.TabIndex = 49;
@@ -227,11 +231,42 @@
             this.Nuevo.UseVisualStyleBackColor = false;
             this.Nuevo.Click += new System.EventHandler(this.Nuevo_Click);
             // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(21, 303);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(55, 13);
+            this.label7.TabIndex = 50;
+            this.label7.Text = "Ubicacion";
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(97, 300);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(130, 21);
+            this.comboBox1.TabIndex = 51;
+            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.ComboBox1_SelectedIndexChanged);
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(247, 303);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(39, 20);
+            this.button1.TabIndex = 52;
+            this.button1.Text = "+";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.Button1_Click);
+            // 
             // rProductos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(433, 394);
+            this.ClientSize = new System.Drawing.Size(446, 468);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.label7);
             this.Controls.Add(this.Nuevo);
             this.Controls.Add(this.ExisencianumericUpDown3);
             this.Controls.Add(this.CostonumericUpDown2);
@@ -278,5 +313,8 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button Nuevo;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.Label label7;
     }
 }

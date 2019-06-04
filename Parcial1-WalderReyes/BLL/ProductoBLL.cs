@@ -32,22 +32,40 @@ namespace Parcial1_WalderReyes.BLL
             return productos;
         }
 
-        
+
+        public static Inventario LlenaClase()
+        {
+            Inventario inventario = new Inventario();
+            inventario.Total = 0;
+            inventario.IdInventario = 1;
+
+            return inventario;
+        }
         public static bool Guardar(Productos productos)
         {
             bool paso = false;
             Contexto contexto = new Contexto();
+            Inventario inventario = new Inventario();
             try
             {
+                inventario = InventarioBLL.Buscar(1);
+                if (inventario == null)
+                {
+
+                    inventario = LlenaClase();
+                    paso = InventarioBLL.Guardar(inventario);
+
+                }
+
+
+
                 if (contexto.Productos.Add(productos) != null)
                     paso = contexto.SaveChanges() > 0;
-                Inventario inventario = InventarioBLL.Buscar(1);
 
                 inventario.Total += productos.ValorInventario;
-
                 InventarioBLL.Modificar(inventario);
             }
-            catch(Exception)
+            catch (Exception)
             {
                 throw;
             }
@@ -58,7 +76,7 @@ namespace Parcial1_WalderReyes.BLL
 
             return paso;
         }
-        
+
         public static bool Modificar(Productos productos)
         {
             bool paso = false;

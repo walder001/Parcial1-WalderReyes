@@ -13,6 +13,8 @@ namespace Parcial1_WalderReyes.DAL
     {
         public DbSet<Productos> Productos { get; set; }
         public DbSet<Inventario> Inventario { get; set; }
+
+        public DbSet<Ubicacion> Ubicacion { get; set; }
         public Contexto() : base("DbParcial1-WalderReyes")
         {
 
